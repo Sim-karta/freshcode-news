@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
   Блочна модель
  */
@@ -25,18 +26,7 @@ body,
 /**
   Прибираємо зовнішні вертикальні відступи потрібним тегам,
  */
-:where(
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ul,
-  ol,
-  dl
-):where([class]) {
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
   margin-block: 0;
 }
 
@@ -66,7 +56,6 @@ body,
  */
 p {
   --paragraphMarginBottom: 24px;
-
   margin-block: 0;
 }
 
@@ -76,7 +65,6 @@ p {
 p:where(:not([class]):not(:last-child)) {
   margin-bottom: var(--paragraphMarginBottom);
 }
-
 
 /**
   Нормалізуємо зображення та відео
@@ -101,8 +89,8 @@ button {
 html {
   height: 100%;
   /**
-    Налаштування скролбару та скролу
-   */
+   Налаштування скролбару та скролу
+  */
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
 }
@@ -137,17 +125,11 @@ button {
 /**
   Приодимо до єдиного кольору svg-елементи
  */
-:where([fill]:not(
-  [fill="none"],
-  [fill^="url"]
-)) {
+:where([fill]:not([fill=none], [fill^=url])) {
   fill: currentColor;
 }
 
-:where([stroke]:not(
-  [stroke="none"],
-  [stroke^="url"]
-)) {
+:where([stroke]:not([stroke=none], [stroke^=url])) {
   stroke: currentColor;
 }
 
@@ -176,3 +158,119 @@ svg * {
     scroll-behavior: auto !important;
   }
 }
+:root {
+  --color-dark: #2d2d2d;
+  --color-light: #ffffff;
+  --color-light-10: #e3e3e3;
+  --color-gray: #878787;
+  --color-accent: #ba3737;
+  --font-family: Verdana, Tahoma, sans-serif;
+  --transition-duration: 0.2s;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-light);
+  padding: 2% 5%;
+}
+
+a,
+button,
+label,
+input,
+textarea,
+select,
+svg * {
+  transition-duration: var(--transition-duration);
+}
+
+a {
+  color: inherit;
+}
+a[class] {
+  text-decoration: none;
+}
+
+.newsCard {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 1px solid var(--color-gray);
+  transition-duration: var(--transtion-duration);
+}
+.newsCard.is-active {
+  background-color: var(--color-light-10);
+  border: 2px solid var(--color-accent);
+}
+.newsCard__header {
+  display: flex;
+  position: relative;
+}
+.newsCard__image {
+  width: 100%;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.newsCard__like-btn {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-light);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 50%;
+}
+.newsCard__like-btn.is-active {
+  color: var(--color-accent);
+  background-color: var(--color-light);
+  border: 2px solid var(--color-accent);
+}
+.newsCard__delete-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--color-light);
+  background-color: var(--color-gray);
+  border: none;
+  border-radius: 50%;
+}
+.newsCard__body-title {
+  font-size: 2rem;
+  padding-block: 1rem;
+  border-bottom: 2px solid var(--color-accent);
+}
+.newsCard__body-info {
+  padding-block: 1rem;
+}
+.newsCard__footer {
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=main.css.map */
