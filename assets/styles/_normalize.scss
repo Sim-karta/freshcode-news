@@ -4,14 +4,14 @@
 *,
 ::before,
 ::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /**
   Прибираємо внутрішні відступи зліва для списків
  */
 :where(ul, ol):where([class]) {
-  padding-left: 0;
+    padding-left: 0;
 }
 
 /**
@@ -19,45 +19,34 @@
  */
 body,
 :where(blockquote, figure, fieldset):where([class]) {
-  margin: 0;
+    margin: 0;
 }
 
 /**
   Прибираємо зовнішні вертикальні відступи потрібним тегам,
  */
-:where(
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ul,
-  ol,
-  dl
-):where([class]) {
-  margin-block: 0;
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl):where([class]) {
+    margin-block: 0;
 }
 
 :where(dd[class]) {
-  margin-left: 0;
+    margin-left: 0;
 }
 
 :where(fieldset[class]) {
-  padding: 0;
-  border: none;
+    padding: 0;
+    border: none;
 }
 
 /**
   Прибираємо стандартний маркер списку
  */
 :where(ul[class]) {
-  list-style: none;
+    list-style: none;
 }
 
 :where(address[class]) {
-  font-style: normal;
+    font-style: normal;
 }
 
 /**
@@ -65,27 +54,26 @@ body,
   створюємо локальну змінну для зовнішнього відступу вниз,
  */
 p {
-  --paragraphMarginBottom: 24px;
+    --paragraphMarginBottom: 24px;
 
-  margin-block: 0;
+    margin-block: 0;
 }
 
 /**
   Робимо зовнішній відступ вниз для не останнього параграфа без класу
  */
 p:where(:not([class]):not(:last-child)) {
-  margin-bottom: var(--paragraphMarginBottom);
+    margin-bottom: var(--paragraphMarginBottom);
 }
-
 
 /**
   Нормалізуємо зображення та відео
  */
 img,
 video {
-  display: block;
-  max-width: 100%;
-  height: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 /**
@@ -95,28 +83,28 @@ input,
 textarea,
 select,
 button {
-  font: inherit;
+    font: inherit;
 }
 
 html {
-  height: 100%;
-  /**
+    height: 100%;
+    /**
     Налаштування скролбару та скролу
    */
-  scrollbar-gutter: stable;
-  scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100%;
-  line-height: 1.5;
+    min-height: 100%;
+    line-height: 1.5;
 }
 
 /**
   Нормалізація розмірів посилання
  */
 a:where([class]) {
-  display: inline-flex;
+    display: inline-flex;
 }
 
 /**
@@ -124,55 +112,49 @@ a:where([class]) {
  */
 button,
 label {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /**
   Прибрає сіре підсвічування при тапі на мобільних пристроях
  */
 button {
-  -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /**
   Приодимо до єдиного кольору svg-елементи
  */
-:where([fill]:not(
-  [fill="none"],
-  [fill^="url"]
-)) {
-  fill: currentColor;
+:where([fill]:not([fill="none"], [fill^="url"])) {
+    fill: currentColor;
 }
 
-:where([stroke]:not(
-  [stroke="none"],
-  [stroke^="url"]
-)) {
-  stroke: currentColor;
+:where([stroke]:not([stroke="none"], [stroke^="url"])) {
+    stroke: currentColor;
 }
 
 svg * {
-  transition-property: fill, stroke;
+    transition-property: fill, stroke;
 }
 
 /**
   Приведення рамок таблиць у класичний 'collapse' вигляд
  */
 :where(table) {
-  border-collapse: collapse;
-  border-color: currentColor;
+    border-collapse: collapse;
+    border-color: currentColor;
 }
 
 /**
   Прибираємо аніміації для тих хто їх не використовує
  */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
