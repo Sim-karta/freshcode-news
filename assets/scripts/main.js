@@ -19,9 +19,12 @@ function getNewsText(title, text, index) {
     return newsText;
 }
 
-newsList.forEach((news, index) => {
+const activeNewsList = [...newsList];
+
+const articleList = activeNewsList.map((news, index) => {
     const newsCard = document.createElement("article");
     newsCard.classList.add("newsCard");
+    newsCard.setAttribute("data-js-index", index);
     document.body.append(newsCard);
 
     const newsCardHeader = document.createElement("div");
@@ -138,4 +141,40 @@ newsList.forEach((news, index) => {
             newsCardLikeIcon.setAttribute("fill", "none");
         }
     });
+
+    newsCardDelete.addEventListener("click", (event) => {
+        const deletedCard = event.currentTarget.closest(".newsCard");
+        const deletedIndex = articleList.indexOf(deletedCard);
+
+        deletedCard.remove();
+        articleList.splice(deletedIndex, 1);
+        activeNewsList.splice(deletedIndex, 1);
+
+        renderCards();
+    });
+
+    return newsCard;
 });
+
+function renderCards() {
+    articleList.forEach((newsCardElement, index) => {
+        const news = activeNewsList[index];
+        render(newsCardElement, news.title, news.body, index);
+    });
+}
+
+function render(newsCardElement, title, body, index) {
+    const newsCardTitleElement = newsCardElement.querySelector(
+        ".newsCard__body-title",
+    );
+
+    const newsCardInfoElement = newsCardElement.querySelector(
+        ".newsCard__body-info",
+    );
+
+    const { title: fullTitle, info } = getNewsText(title, body, index);
+
+    newsCardTitleElement.textContent = fullTitle;
+
+    newsCardInfoElement.textContent = info;
+}
