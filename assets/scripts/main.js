@@ -133,6 +133,13 @@ const articleList = activeNewsList.map((news, index) => {
     newsCardTime.textContent = news.date;
     newsCardDate.append(newsCardTime);
 
+    newsCard.addEventListener("click", () => {
+        articleList.forEach((newsCard) => {
+            newsCard.classList.toggle("is-active", false);
+        });
+        newsCard.classList.toggle("is-active");
+    });
+
     newsCardLike.addEventListener("click", () => {
         newsCardLike.classList.toggle("is-active");
         if (newsCardLikeIcon.getAttribute("fill") === "none") {
