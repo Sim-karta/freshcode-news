@@ -254,10 +254,18 @@ a[class] {
   border: none;
   border-radius: 50%;
 }
+.newsCard__like-btn:hover {
+  color: var(--color-accent);
+  background-color: var(--color-light);
+}
 .newsCard__like-btn.is-active {
   color: var(--color-accent);
   background-color: var(--color-light);
-  border: 2px solid var(--color-accent);
+}
+.newsCard__like-btn.is-active:hover {
+  color: var(--color-light);
+  background-color: var(--color-gray);
+  border: none;
 }
 .newsCard__delete-btn {
   position: absolute;
@@ -272,6 +280,10 @@ a[class] {
   background-color: var(--color-gray);
   border: none;
   border-radius: 50%;
+}
+.newsCard__delete-btn:hover {
+  color: var(--color-accent);
+  background-color: var(--color-light);
 }
 .newsCard__body-title {
   font-size: 2em;

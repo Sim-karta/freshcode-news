@@ -1,5 +1,24 @@
 import { newsList } from "./news-data.js";
 
+function getNewsText(title, text, index) {
+    const newsText = {
+        title: "",
+        info: "",
+    };
+
+    if (index === 0) {
+        newsText.title = title;
+    } else {
+        newsText.title = title.slice(0, 30) + "...";
+    }
+
+    if (index === 0) {
+        newsText.info = text;
+    }
+
+    return newsText;
+}
+
 newsList.forEach((news, index) => {
     const newsCard = document.createElement("article");
     newsCard.classList.add("newsCard");
@@ -75,23 +94,17 @@ newsList.forEach((news, index) => {
     newsCardBody.classList.add("newsCard__body");
     newsCard.append(newsCardBody);
 
+    const { title, info } = getNewsText(news.title, news.body, index);
+
     const newsCardTitle = document.createElement("h2");
     newsCardTitle.classList.add("newsCard__body-title");
-
-    if (index === 0) {
-        newsCardTitle.textContent = news.title;
-    } else {
-        newsCardTitle.textContent = news.title.slice(0, 30) + "...";
-    }
-
+    newsCardTitle.textContent = title;
     newsCardBody.append(newsCardTitle);
 
-    if (index === 0) {
-        const newsCardInfo = document.createElement("p");
-        newsCardInfo.classList.add("newsCard__body-info");
-        newsCardInfo.textContent = news.body;
-        newsCardBody.append(newsCardInfo);
-    }
+    const newsCardInfo = document.createElement("p");
+    newsCardInfo.classList.add("newsCard__body-info");
+    newsCardInfo.textContent = info;
+    newsCardBody.append(newsCardInfo);
 
     const newsCardFooter = document.createElement("div");
     newsCardFooter.classList.add("newsCard__footer");
@@ -116,4 +129,13 @@ newsList.forEach((news, index) => {
     newsCardTime.dateTime = news.date;
     newsCardTime.textContent = news.date;
     newsCardDate.append(newsCardTime);
+
+    newsCardLike.addEventListener("click", () => {
+        newsCardLike.classList.toggle("is-active");
+        if (newsCardLikeIcon.getAttribute("fill") === "none") {
+            newsCardLikeIcon.setAttribute("fill", "currentColor");
+        } else {
+            newsCardLikeIcon.setAttribute("fill", "none");
+        }
+    });
 });

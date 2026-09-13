@@ -48,10 +48,20 @@
         border: none;
         border-radius: 50%;
 
+        &:hover {
+            color: var(--color-accent);
+            background-color: var(--color-light);
+        }
+
         &.is-active {
             color: var(--color-accent);
             background-color: var(--color-light);
-            border: 2px solid var(--color-accent);
+
+            &:hover {
+                color: var(--color-light);
+                background-color: var(--color-gray);
+                border: none;
+            }
         }
     }
 
@@ -68,6 +78,11 @@
         background-color: var(--color-gray);
         border: none;
         border-radius: 50%;
+
+        &:hover {
+            color: var(--color-accent);
+            background-color: var(--color-light);
+        }
     }
 
     &__body {
