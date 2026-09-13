@@ -182,9 +182,10 @@ svg * {
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+  grid-auto-rows: auto;
+  gap: 1rem;
   background-color: var(--color-light);
   padding: 2% 5%;
 }
@@ -213,6 +214,16 @@ a[class] {
   border: 1px solid var(--color-gray);
   transition-duration: var(--transtion-duration);
 }
+.newsCard:first-of-type {
+  grid-column: 1/2;
+  grid-row: 1/4;
+  align-self: start;
+}
+.newsCard:not(:first-of-type) {
+  grid-column: 2/3;
+  grid-row: auto;
+  font-size: 8px;
+}
 .newsCard.is-active {
   background-color: var(--color-light-10);
   border: 2px solid var(--color-accent);
@@ -223,7 +234,7 @@ a[class] {
 }
 .newsCard__image {
   width: 100%;
-  height: 300px;
+  height: 12em;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
@@ -231,44 +242,56 @@ a[class] {
 }
 .newsCard__like-btn {
   position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  right: 1em;
+  bottom: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
+  width: 3em;
+  height: 3em;
   color: var(--color-light);
   background-color: var(--color-accent);
   border: none;
   border-radius: 50%;
 }
+.newsCard__like-btn:hover {
+  color: var(--color-accent);
+  background-color: var(--color-light);
+}
 .newsCard__like-btn.is-active {
   color: var(--color-accent);
   background-color: var(--color-light);
-  border: 2px solid var(--color-accent);
+}
+.newsCard__like-btn.is-active:hover {
+  color: var(--color-light);
+  background-color: var(--color-gray);
+  border: none;
 }
 .newsCard__delete-btn {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  right: 1em;
+  top: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
+  width: 3em;
+  height: 3em;
   color: var(--color-light);
   background-color: var(--color-gray);
   border: none;
   border-radius: 50%;
 }
+.newsCard__delete-btn:hover {
+  color: var(--color-accent);
+  background-color: var(--color-light);
+}
 .newsCard__body-title {
-  font-size: 2rem;
-  padding-block: 1rem;
+  font-size: 2em;
+  padding-block: 1em;
   border-bottom: 2px solid var(--color-accent);
 }
 .newsCard__body-info {
-  padding-block: 1rem;
+  padding-block: 1em;
 }
 .newsCard__footer {
   display: flex;
